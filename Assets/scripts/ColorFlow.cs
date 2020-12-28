@@ -5,10 +5,10 @@ using io.daniellanner.indiversity;
 
 public class ColorFlow : MonoBehaviour
 {
-	public void Expand()
+	public ColorFlow Expand(float x)
 	{
 		Vector3 to = Vector3.one;
-		to.x = Random.Range(0.25f, 1f);
+		to.x = x;
 		to.y = 10f;
 
 		var anim = new CoroutineTransformScale(transform, Vector3.zero, to)
@@ -16,5 +16,7 @@ public class ColorFlow : MonoBehaviour
 			.SetDuration(1f);
 
 		StartCoroutine(anim.GetIEnumerator());
+
+		return this;
 	}
 }

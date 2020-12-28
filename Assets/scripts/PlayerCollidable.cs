@@ -6,10 +6,12 @@ using io.daniellanner.indiversity;
 public class PlayerCollidable : MonoBehaviour, ICollidable
 {
 	#region properties
+#pragma warning disable 0649
 	[SerializeField]
 	private float _radius = .5f;
 	[SerializeField]
-	private int _id = 0;
+	private int _playerID = 0;
+#pragma warning restore 0649
 	#endregion
 
 	#region cache
@@ -24,7 +26,7 @@ public class PlayerCollidable : MonoBehaviour, ICollidable
 
 	public void CollisionWith(string id)
 	{
-		_controller?.Collision(_id);
+		_controller?.Collision(_playerID, id);
 	}
 
 	public string GetID()

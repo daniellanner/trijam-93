@@ -59,8 +59,27 @@ namespace io.daniellanner.indiversity
 					distance = Vector3.SqrMagnitude(playerPos - propPosition);
 					if (distance <= Mathf.Pow(playerRadius + propRadius, 2f))
 					{
-						prop.CollisionWith(player.GetID());
-						player.CollisionWith(prop.GetID());
+						try
+						{
+							prop.CollisionWith(player.GetID());
+						}
+						catch(System.Exception e)
+						{
+							Debug.LogError("Your obstacle collision resolve method triggered an exception");
+							Debug.LogException(e);
+							continue;
+						}
+
+						try
+						{
+							player.CollisionWith(prop.GetID());
+						}
+						catch (System.Exception e)
+						{
+							Debug.LogError("Your player collision resolve method triggered an exception");
+							Debug.LogException(e);
+							continue;
+						}
 						break;
 					}
 				}

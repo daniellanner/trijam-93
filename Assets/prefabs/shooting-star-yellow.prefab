@@ -4903,5 +4903,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9258deece53a6342a6bf9f613ff065a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colorFlow: {fileID: 7667335191886117457, guid: e2c9ffd0d4e5b314abb1c1696b9f5690,
-    type: 3}
+  _color: 2

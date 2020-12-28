@@ -6,8 +6,10 @@ using io.daniellanner.indiversity;
 public class ShootingStar : MonoBehaviour, ICollidable
 {
 	#region properties
+	#pragma warning disable 0649
 	[SerializeField]
-	private GameObject _colorFlow;
+	private ColorInstantiator.EColor _color;
+	#pragma warning restore 0649
 	#endregion
 
 	#region constants
@@ -17,12 +19,12 @@ public class ShootingStar : MonoBehaviour, ICollidable
 	#region state
 	private Vector3 _speed;
 	private bool _alive = true;
-	private static float _currentLayerOffset = 0f;
 	#endregion
 
 	#region cache
 	private ParticleSystem _particleSystem;
 	private static FauxCollision _collision;
+	private static ColorInstantiator _colorInit;
 	#endregion
 
 	private void Awake()
@@ -32,6 +34,11 @@ public class ShootingStar : MonoBehaviour, ICollidable
 		if(_collision == null)
 		{
 			_collision = FindObjectOfType<FauxCollision>();
+		}
+
+		if (_colorInit == null)
+		{
+			_colorInit = FindObjectOfType<ColorInstantiator>();
 		}
 	}
 
@@ -55,15 +62,7 @@ public class ShootingStar : MonoBehaviour, ICollidable
 			// reached bottom
 			_alive = false;
 			_collision?.RemoveProp(GetInstanceID());
-
-			Vector3 pos = transform.position;
-			pos.z = 4.5f - _currentLayerOffset;
-
-			_currentLayerOffset += 0.01f;
-
-			Instantiate(_colorFlow, pos, Quaternion.identity)
-				?.GetComponent<ColorFlow>()
-				?.Expand();
+			_colorInit?.Instantiate(transform.position, _color, .25f, 1f);
 
 			Invoke("DestroyStar", .5f);
 		}
@@ -71,7 +70,7 @@ public class ShootingStar : MonoBehaviour, ICollidable
 
 	public string GetID()
 	{
-		return "star";
+		return _color.ToString();
 	}
 
 	public Vector3 GetPosition()

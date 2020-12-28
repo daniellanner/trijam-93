@@ -236,5 +236,29 @@ namespace io.daniellanner.indiversity
 			Vector3 f3 = 2 * t * end;
 			return f1 + f2 + f3;
 		}
+
+		public static bool NearlyEqual(float a, float b, float epsilonFactor = 1000f)
+		{
+			float absA = Mathf.Abs(a);
+			float absB = Mathf.Abs(b);
+			float diff = Mathf.Abs(a - b);
+
+			float epsilon = System.Single.Epsilon * epsilonFactor;
+
+			if (a == b)
+			{ // shortcut, handles infinities
+				return true;
+			}
+			else if (a == 0 || b == 0 || absA + absB < System.Single.Epsilon)
+			{
+				// a or b is zero or both are extremely close to it
+				// relative error is less meaningful here
+				return diff < epsilon;
+			}
+			else
+			{ // use relative error
+				return diff / (absA + absB) < epsilon;
+			}
+		}
 	}
 }

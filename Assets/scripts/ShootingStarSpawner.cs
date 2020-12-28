@@ -6,21 +6,20 @@ using io.daniellanner.indiversity;
 [TimelineDescription("game", true)]
 public class ShootingStarSpawner : MonoBehaviourInTimeline
 {
+	#region properties
+#pragma warning disable 0649
 	[SerializeField]
 	private GameObject _yellowStar;
 	[SerializeField]
 	private GameObject _greenStar;
 	[SerializeField]
 	private GameObject _pinkStar;
+#pragma warning restore 0649
+	#endregion
 
 	#region constants
 	private const float MAX_REACH = 1.9f;
 	#endregion
-
-	private void Awake()
-	{
-
-	}
 
 	private void SpawnStar()
 	{
