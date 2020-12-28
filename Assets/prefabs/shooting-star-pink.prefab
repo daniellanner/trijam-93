@@ -803,7 +803,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 180
       mode: 0
       spread: 0
       speed:
@@ -4903,5 +4903,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9258deece53a6342a6bf9f613ff065a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colorFlow: {fileID: 7667335191886117457, guid: ae0792857f703db47a8bea65bfebb6db,
-    type: 3}
+  _color: 0
